@@ -40,7 +40,7 @@ body {
     height: 20px;
     width: 80%;
     position: relative;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     z-index: 10; /* Ensures visibility */
 }
 .progress #length {
@@ -93,7 +93,7 @@ body {
         height: auto;
         margin-top: 10%;
         margin-left: 5%;
-        margin-bottom: 10%;
+      
     }
     .progress {
         width: 90%;
@@ -106,7 +106,7 @@ body {
         height: auto;
         margin-top: 15%;
         margin-left: 0;
-        margin-bottom: 15%;
+      
     }
     .progress {
         width: 95%;

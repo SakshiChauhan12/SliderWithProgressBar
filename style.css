@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: flex-end;
     position: relative;
+
 }
 .slider__container {
     position: absolute;
@@ -81,10 +82,6 @@ body {
     width: 100%;
     display: flex;
 }
-.slider__count .count {
-    width: 20%;
-    border: 1px solid #f7f7f7;
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -112,4 +109,32 @@ body {
         width: 95%;
         height: 15px;
     }
+}
+
+.nav-btn {
+    position: absolute;
+    bottom: 2rem;
+    padding: 10px 20px;
+    font-size: 2rem;
+    background-color: #577399;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 20;
+    border-radius: 50%;
+
+
+}
+
+#prevBtn {
+    left: 2rem;
+    margin-bottom: 20%;
+    margin-left: 18%;
+   
+}
+
+#nextBtn {
+margin-bottom: 20%;
+margin-left: 35%;
+  
 }

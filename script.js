@@ -22,38 +22,65 @@
 // //load the function when the page loads
 
 // window.onload=slideShow;
+
 const slides = document.querySelectorAll('.slide');
-const progressBar = document.getElementById('progress__animation');
-let currentSlide = 0;
-const slideDuration = 3000; // 3 seconds
+const progressAnimation = document.getElementById('progress__animation');
+let currentIndex = 0;
+let autoSlideInterval;
 
-// Function to show the next slide and reset the progress bar
-function showNextSlide() {
-    // Remove 'active' class from the current slide
-    slides[currentSlide].classList.remove('active');
-
-    // Move to the next slide or loop back to the first
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
-
-    // Reset the progress bar width
-    progressBar.style.width = '0%';
-
-    // Animate the progress bar over the slide duration
-    let startTime = Date.now();
-    const animateProgressBar = () => {
-        const elapsed = Date.now() - startTime;
-        const progress = Math.min((elapsed / slideDuration) * 100, 100);
-        progressBar.style.width = `${progress}%`;
-
-        // Continue updating until we reach 100%
-        if (progress < 100) {
-            requestAnimationFrame(animateProgressBar);
-        }
-    };
-    requestAnimationFrame(animateProgressBar);
+// Function to show the current slide based on index
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+    });
+    resetProgressBar();
 }
 
-// Initial call and interval setup for automatic slide change
-showNextSlide();
-setInterval(showNextSlide, slideDuration);
+// Function to go to the next slide
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+}
+
+// Function to go to the previous slide
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+}
+
+// Reset and restart the progress bar animation
+function resetProgressBar() {
+    progressAnimation.style.animation = 'none';
+    // Trigger reflow to restart animation
+    void progressAnimation.offsetWidth;
+    progressAnimation.style.animation = 'moving 3s linear infinite';
+}
+
+// Start auto-slide function
+function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 3000);
+}
+
+// Stop auto-slide function
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+// Event listeners for buttons
+document.getElementById('nextBtn').addEventListener('click', () => {
+    stopAutoSlide();
+    nextSlide();
+    startAutoSlide();
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+    stopAutoSlide();
+    prevSlide();
+    startAutoSlide();
+});
+
+// Initial load
+window.onload = () => {
+    showSlide(currentIndex);
+    startAutoSlide();
+};

@@ -7,8 +7,9 @@
     <title>Autoslider with progress bar</title>
 </head>
 <body>
-    
+   
     <div class="container">
+        <button id="prevBtn" class="nav-btn"><</button>
         <div class="slider__container">
             <img src="images/image1.jpg" class="slide active">
             <img src="images/image2.jpg" class="slide">
@@ -16,7 +17,8 @@
             <img src="images/image4.jpg" class="slide">
             <img src="images/image5.jpg" class="slide">
         </div>
-
+    
+        <!-- Progress bar -->
         <div class="progress">
             <div id="length"></div>
             <div id="progress__animation"></div>
@@ -28,8 +30,12 @@
                 <div class="count"></div>
             </div>
         </div>
+    
+        <!-- Navigation buttons -->
+       
+        <button id="nextBtn" class="nav-btn">></button>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
